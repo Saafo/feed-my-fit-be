@@ -1,0 +1,542 @@
+# FeedMyFit 后台接口文档
+
+若无特殊说明，请求和返回数据都是json
+
+*   Domain: https://*
+
+---
+
+## 返回数据示例：
+
+```json
+{
+  "errorCode": 0,
+  "errorMsg": "ok",
+  "data":{}
+}
+```
+
+## 错误代码
+
+*   0 表示正常工作
+*   -1 empty
+*   -2 error
+*   -3 token过期，重新登录
+
+返回数据在data里，也是一个json
+以下**返回数据**的说明**只针对data内**的部分
+
+---
+
+## 用户注册
+
+HTTP Method: Get
+
+Url:/user/register
+
+Request:
+
+```url
+PhoneNum=12345678901&Key=367b61b333c242a4253cfacfe6ea709f
+```
+
+此处key由本地AES加密，秘钥私下给出。
+
+Return:
+
+```json
+{
+  "Id": "xxxxxxxx",
+  "Token": "xxxxxxxxxx"
+}
+```
+
+## 用户登录
+
+HTTP Method: Get
+
+Url:/user/login
+
+Request:
+
+```url
+PhoneNum=12345678901&Key=367b61b333c242a4253cfacfe6ea709f
+```
+
+Return:
+
+```json
+{
+  "Id": "xxxxxxxx",
+  "Token": "xxxxxxxxx"
+}
+```
+
+### Token更新，每次打开软件的时候进行
+
+HTTP Method: Get
+
+Url: /user/updatetoken
+
+Request:
+
+```url
+Id=xxxxxxx&Token=xxxxxxx
+```
+
+Response:
+
+```json
+{
+  "Token": "zzzzzzzz" //新Token，用于替换旧Token
+}
+```
+
+## 获取个人信息
+
+HTTP Method: Get
+
+Url:/user/getselfinfo
+
+Request:
+
+```url
+Id=xxxxxxx&Token=xxxxxxx
+```
+
+Return:
+
+```json
+{
+  "PhoneNum": "12345678901",
+  "Avatar": "xxxxxxxxxx", //七牛云url
+  "Username": "Feed!",
+  "Sex": "Male", //or Female or Secret
+  "Height": "170.5",
+  "Weight": "65.5",
+  "Birth": "2000-01-01", //格式我还不敢完全确定，但差不多就是这样
+  "City": "成都",
+  "SkinType": "1",
+  "HeatQuantityDemand": "100",
+  "ProteinDemand": "100",
+  "CarbohydratesDemand": "100", //糖类
+  "FatDemand": "100",
+  "VitaminADemand": "100",
+  "VitaminB1Demand": "100",
+  "VitaminB2Demand": "100",
+  "VitaminB6Demand": "100",
+  "VitaminB12Demand": "100",
+  "VitaminCDemand": "100",
+  "VitaminDDemand": "100",
+  "VitaminEDemand": "100",
+  "VitaminKDemand": "100"
+}
+```
+
+`*Demand`：需求量
+
+### 获取用户公众信息
+
+HTTP Method: Get
+
+Url: /user/getpublicinfo
+
+Request:
+
+```url
+Id=xxxxxxx&Token=xxxxxxx&Getid=zzzzzz //Getid为需要获取的用户id
+```
+
+Response:
+
+```json
+{
+  "Id": "zzzzzz",
+  "Avatar": "xxxxxxxxx", //七牛云url
+  "Username": "Feed@",
+  "Sex": "Male",
+  "City": "成都"
+}
+```
+
+## 更新个人信息
+
+HTTP Method: Post
+
+Url:/user/updatedata
+
+Request:
+
+```json
+{
+  "Id": "xxxxxxx",
+  "Token": "xxxxxxxxxx",
+  "UserData": {
+    "Avatar": "1",
+    "Username": "Feed!",
+    "Sex": "Male",
+    "Height": "170.5",
+    "Weight": "65.5",
+    "Birth": "2000-01-01",
+    "City": "成都",
+    "SkinType": "1",
+    "HeatQuantityDemand": "100",
+    "ProteinDemand": "100",
+    "CarbohydratesDemand": "100", //糖类
+    "FatDemand": "100",
+    "VitaminADemand": "100",
+    "VitaminB1Demand": "100",
+    "VitaminB2Demand": "100",
+    "VitaminB6Demand": "100",
+    "VitaminB12Demand": "100",
+    "VitaminCDemand": "100",
+    "VitaminDDemand": "100",
+    "VitaminEDemand": "100",
+    "VitaminKDemand": "100"
+  }
+}
+```
+
+Response:
+
+```json
+//空data
+```
+
+## 获取历史数据
+
+HTTP Method: Get
+
+Url:/info/getstatistic
+
+Request:
+
+```url
+Id=xxxxxxxx&Token=xxxxxxx&GetAll=true&Date=none
+//或者
+Id=xxxxxxxx&Token=xxxxxxx&GetAll=false&Date=20200401
+```
+
+Return:
+
+```json
+{
+  "2020-04-01": {
+    "HealthyState": "健康",
+    "HeatQuantity": "100",
+    "HeatQuantityDiff": "10",
+    "Protein": "100",
+    "ProteinDiff": "10",
+    "Carbohydrates": "100",
+    "CarbohydratesDiff": "10",
+    "Fat": "100",
+    "FatDiff": "10",
+    "VitaminA": "100",
+    "VitaminADiff": "10",
+    "VitaminB1": "100",
+    "VitaminB1Diff": "10",
+    "VitaminB2": "100",
+    "VitaminB2Diff": "10",
+    "VitaminB6": "100",
+    "VitaminB6Diff": "10",
+    "VitaminB12": "100",
+    "VitaminB12Diff": "10",
+    "VitaminC": "100",
+    "VitaminCDiff": "10",
+    "VitaminD": "100",
+    "VitaminDDiff": "10",
+    "VitaminE": "100",
+    "VitaminEDiff": "10",
+    "VitaminK": "100",
+    "VitaminKDiff": "10"
+  }
+}
+```
+
+**以上只是返回一天的数据，如果请求里`GetAll`是`true`的话，可能会返回多天的数据，`key`即是日期。
+
+## 更新数据
+
+HTTP Method: Post
+
+Url:/info/poststatistic
+
+Request:
+
+```json
+{
+  "Id": "xxxxxxx",
+  "Token": "xxxxxxxxxx",
+  "UserStatistic": {
+    "Date": "2020-04-01",
+    "HealthyState": "亚健康",
+    "HeatQuantity": "100",
+    "HeatQuantity": "10",
+    "Protein": "100",
+    "ProteinDiff": "10",
+    "Carbohydrates": "100",
+    "CarbohydratesDiff": "10",
+    "Fat": "100",
+    "FatDiff": "10",
+    "VitaminA": "100",
+    "VitaminADiff": "10",
+    "VitaminB1": "100",
+    "VitaminB1Diff": "10",
+    "VitaminB2": "100",
+    "VitaminB2Diff": "10",
+    "VitaminB6": "100",
+    "VitaminB6Diff": "10",
+    "VitaminB12": "100",
+    "VitaminB12Diff": "10",
+    "VitaminC": "100",
+    "VitaminCDiff": "10",
+    "VitaminD": "100",
+    "VitaminDDiff": "10",
+    "VitaminE": "100",
+    "VitaminEDiff": "10",
+    "VitaminK": "100",
+    "VitaminKDiff": "10"
+  }
+}
+```
+
+这里应该POST每天的累计量，服务器只做存储，不做累计工作。
+
+Return:
+
+```json
+//空data
+```
+
+---
+
+朋友圈接口相关
+
+### 获取`id为xxxx用户`或者`全体用户`的所有MomentsID
+
+HTTP Method: Get
+
+Url: /moments/getmomentsid
+
+Request:
+
+```url
+Id=xxxxxxxx&Token=xxxxxxx&GetAll=true&GetId=none
+//或者
+Id=xxxxxxxx&Token=xxxxxxx&GetAll=false&GetId=xxxx
+```
+
+Response:
+
+```json
+{
+  "MomentsIds": ["id1xxxxx", "id2xxxxxxx", "id3xxxxxxx"]
+}
+```
+
+### 获取单条动态内容
+
+HTTP Method: Get
+
+Url: /moments/getmoment
+
+Request:
+
+```url
+Id=xxxxxxx&Token=xxxxxxx&MomentID=id1xxxxxx //Id为本用户id
+```
+
+Response:
+
+```json
+{
+  "MomentID": "id1xxxxxx",
+  "Id": "xxxxxxxx", //发这条moment用户的id
+	"Time": "2018-09-01",
+  "Text": "dgsgsgsdgasf sdff faf fa 啦啦啦啦测试内容",
+  "Pic": "xxxxxxxxxxxxxxx", //url
+  "Thumbs": "233",
+  "Comments": {
+    "1232131": { //CommentID
+      "Id": "xxxxxxxx", //发送该条评论的用户id
+      "Username": "啦啦啦",
+      "Text": "哈哈哈哈昂xswl"
+    },
+    "2342341": {
+      "Id": "xxxxxxxx",
+      "Username": "这TM是来捣乱的是吧",
+      "Text": "233333333"
+    }
+  }
+}
+```
+
+### 点赞
+
+HTTP Method: Get
+Url: /moments/thumbup
+
+Request:
+
+```url
+Id=xxxxxxx&Token=xxxxxxx&MomentID=id1xxxxxx
+```
+
+Response:
+
+```json
+//无data
+```
+
+### 发Moments
+
+HTTP Method: POST
+
+Url: /moments/postmoment
+
+Request:
+
+```json
+{
+  "Id": "xxxxxxxx",
+  "Token": "xxxxxxx",
+  "Text": "这是一条测试文案",
+  "Pic": "xxxxxxxxxxxx", //七牛云返回的图片url链接
+  "Timestamp": "2020-05-11 08:13:21+08" //东八区
+}
+```
+
+Response:
+
+```json
+{
+  "MomentID": "xxxxx"
+}
+```
+
+### 评论
+
+HTTP Method: Post
+
+Url: /moments/postcomment
+
+Request:
+
+```json
+{
+  "Id": "xxxxxxx",
+  "Token": "xxxxxxxxx",
+  "MomentID": "id1xxxxxx",
+  "Text": "哈哈哈哈笑死我了",
+  "Timestamp": "2020-05-11 08:13:21+08" //东八区
+}
+```
+
+Response:
+
+```json
+{
+  "CommentID": "cxxxxxxxxxx"
+}
+```
+
+
+
+
+
+---
+
+## 数据库结构
+
+### userinfo table
+
+| Key                 | Type    | Length | more   |
+| ------------------- | ------- | ------ | ------ |
+| ID                  | Serial  |        | PK, NN |
+| Token               | char    | 32     | NN     |
+| AppleID             | varchar | 64     |        |
+| WechatID            | varchar | 32     |        |
+| PhoneNum            | char    | 16     | NN     |
+| Avatar              | varchar | 128    | NN     |
+| Username            | varchar | 20     | NN     |
+| Sex                 | char    | 9      | NN     |
+| Height              | char    | 5      | NN     |
+| Weight              | char    | 5      | NN     |
+| Birth               | date    |        | NN     |
+| City                | varchar | 20     | NN     |
+| SkinType            | char    | 5      | NN     |
+| HeatQuantityDemand  | char    | 8      | NN     |
+| ProteinDemand       | char    | 8      | NN     |
+| CarbohydratesDemand | char    | 8      | NN     |
+| FatDemand           | char    | 8      | NN     |
+| VitaminADemand      | char    | 8      | NN     |
+| VitaminB1Demand     | char    | 8      | NN     |
+| VitaminB2Demand     | char    | 8      | NN     |
+| VitaminB6Demand     | char    | 8      | NN     |
+| VitaminB12Demand    | char    | 8      | NN     |
+| VitaminCDemand      | char    | 8      | NN     |
+| VitaminDDemand      | char    | 8      | NN     |
+| VitaminEDemand      | char    | 8      | NN     |
+| VitaminKDemand      | char    | 8      | NN     |
+
+
+
+### userdata table
+
+| key               | type   | length | more               |
+| ----------------- | ------ | ------ | ------------------ |
+| ID                | Serial |        | PK,FK              |
+| ate               | date   |        | PK                 |
+| HealthyState      | char   | 15     | 健康，肥胖，亚健康 |
+| HeatQuantity      | Float  |        |                    |
+| HeatQuantityDiff  | Float  |        |                    |
+| Protein           | float  |        |                    |
+| ProteinDiff       | Float  |        |                    |
+| Carbohydrates     | float  |        | (糖类)             |
+| CarbohydratesDiff | Float  |        |                    |
+| Fat               | float  |        |                    |
+| FatDiff           | Float  |        |                    |
+| VitaminA          | float  |        |                    |
+| VitaminADiff      | Float  |        |                    |
+| VitaminB1         | float  |        |                    |
+| VitaminB1Diff     | float  |        |                    |
+| VitaminB2         | float  |        |                    |
+| VitaminB2Diff     | float  |        |                    |
+| VitaminB6         | float  |        |                    |
+| VitaminB6Diff     | float  |        |                    |
+| VitaminB12        | float  |        |                    |
+| VitaminB12Diff    | float  |        |                    |
+| VitaminC          | float  |        |                    |
+| VitaminCDiff      | float  |        |                    |
+| VitaminD          | float  |        |                    |
+| VitaminDDiff      | float  |        |                    |
+| VitaminE          | float  |        |                    |
+| VitaminEDiff      | float  |        |                    |
+| VitaminK          | float  |        |                    |
+| VitaminKDiff      | float  |        |                    |
+
+
+
+### moments table
+
+| key      | type      | length | more |
+| -------- | --------- | ------ | ---- |
+| ID       | Serial4   |        | FK   |
+| MomentID | Serial8   |        | PK   |
+| Time     | Timestamp |        |      |
+| Text     | varchar   | 256    |      |
+| Pic      | varchar   | 512    |      |
+| Thumbs   | int       | 8      |      |
+
+
+
+### comments table
+
+| key       | type      | length | more |
+| --------- | --------- | ------ | ---- |
+| MomentID  | Serial8   |        | FK   |
+| CommentID | Serial8   |        | PK   |
+| ID        | Serial4   |        | FK   |
+| Time      | Timestamp |        |      |
+| Text      | varchar   | 256    |      |
+
