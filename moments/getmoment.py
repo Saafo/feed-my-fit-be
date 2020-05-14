@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def getmoment(mybase, args):
+def getmoment(cur, args):
     id = args.get('id')
     token = args.get('token')
     momentid = args.get('momentid')

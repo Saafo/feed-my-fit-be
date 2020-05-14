@@ -6,6 +6,7 @@ import flaskapp
 def main():
     debug = True
     mybase = None
+    mybase.cur = None
     if debug is False: #TODO delete
         config = {}
         with open('./config.json') as f:
@@ -19,8 +20,9 @@ def main():
 
         mybase = database.Postgres(username,password,basename,hostname,port)
         mybase.connect()
+        mybase.cursor()
 
-    flaskapp.flaskapp(mybase)
+    flaskapp.flaskapp(mybase.cur)
 
     if debug is False: #TODO delete
         mybase.conn.close()

@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def getmomentsid(mybase, args):
+def getmomentsid(cur, args):
     id = args.get('id')
     token = args.get('token')
     getall = args.get('getall')

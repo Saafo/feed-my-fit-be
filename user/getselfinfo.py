@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def getselfinfo(mybase, args):
+def getselfinfo(cur, args):
     id = args.get('id')
     token = args.get('token')
     #参数完整性验证

@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def poststatistic(mybase, json):
+def poststatistic(cur, json):
     #先解析json
     id = json['Id']
     token = json['Token']

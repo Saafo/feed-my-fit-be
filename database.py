@@ -8,6 +8,7 @@ class Postgres:
     hostname = ""
     port = ""
     conn = None
+    cur = None
 
     def __init__(self, user, passw, data, host, port):
         self.username = user
@@ -18,3 +19,6 @@ class Postgres:
 
     def connect(self):
         self.conn = psycopg2.connect(database=self.basename, user=self.username, password=self.password, host=self.hostname, port=self.port)
+
+    def cursor(self):
+        self.cur = self.conn.cursor()

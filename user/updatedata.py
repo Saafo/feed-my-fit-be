@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def updatedata(mybase, json):
+def updatedata(cur, json):
     #先解析json
     id = json['Id']
     token = json['Token']

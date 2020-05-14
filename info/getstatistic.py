@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def getstatistic(mybase, args):
+def getstatistic(cur, args):
     id = args.get('id')
     token = args.get('token')
     getall = args.get('getall')

@@ -5,7 +5,7 @@ from user import *
 from info import *
 from moments import *
 
-def flaskapp(mybase):
+def flaskapp(cur):
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
 
@@ -23,54 +23,54 @@ def flaskapp(mybase):
     #TODO 所有route都要做个参数完整性验证
     @app.route('/user/register') #用户注册
     def register_route():
-        return registerlogin.registerlogin(mybase, request.args)
+        return registerlogin.registerlogin(cur, request.args)
 
     @app.route('/user/login') #用户登录
     def login_route():
-        return registerlogin.registerlogin(mybase, request.args)
+        return registerlogin.registerlogin(cur, request.args)
 
     @app.route('/user/updatetoken') #Token更新
     def updatetoken_route():
-        return updatetoken.updatetoken(mybase, request.args)
+        return updatetoken.updatetoken(cur, request.args)
 
     @app.route('/user/getselfinfo') #获取个人信息
     def getselfinfo_route():
-        return getselfinfo.getselfinfo(mybase, request.args)
+        return getselfinfo.getselfinfo(cur, request.args)
 
     @app.route('/user/getpublicinfo') #获取用户公众信息
     def getpublicinfo_route():
-        return getpublicinfo.getpublicinfo(mybase, request.args)
+        return getpublicinfo.getpublicinfo(cur, request.args)
 
     @app.route('/user/updatedata', methods=["POST"]) #更新个人信息
     def updatedata_route():
-        return updatedata.updatedata(mybase, request.get_json())
+        return updatedata.updatedata(cur, request.get_json())
 
     @app.route('/info/getstatistic') #获取历史数据
     def getstatistic_route():
-        return getstatistic.getstatistic(mybase, request.args)
+        return getstatistic.getstatistic(cur, request.args)
 
     @app.route('/info/poststatistic', methods=["POST"]) #更新数据
     def poststatistic_route():
-        return poststatistic.poststatistic(mybase, request.get_json())
+        return poststatistic.poststatistic(cur, request.get_json())
 
     @app.route('/moments/getmomentsid') #获取`id为xxxx用户`或者`全体用户`的所有MomentsID
     def getmomentsid_route():
-        return getmomentsid.getmomentsid(mybase, request.args)
+        return getmomentsid.getmomentsid(cur, request.args)
 
     @app.route('/moments/getmoment') #获取单条动态内容
     def getmoment_route():
-        return getmoment.getmoment(mybase, request.args)
+        return getmoment.getmoment(cur, request.args)
 
     @app.route('/moments/thumbup') #点赞
     def thumbup_route():
-        return thumbup.thumbup(mybase, request.args)
+        return thumbup.thumbup(cur, request.args)
 
     @app.route('/moments/postmoment', methods=["POST"]) #发动态
     def postmoment_route():
-        return postmoment.postmoment(mybase, request.get_json())
+        return postmoment.postmoment(cur, request.get_json())
 
     @app.route('/moments/postcomment', methods=["POST"]) #评论
     def postcomment_route():
-        return postcomment.postcomment(mybase, request.get_json())
+        return postcomment.postcomment(cur, request.get_json())
 
     app.run() #TODO debugging

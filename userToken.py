@@ -2,7 +2,7 @@
 import random
 
 # This function is generate a new token
-def genToken(mybase, phone_num, id):
+def genToken(cur, phone_num, id):
     # 生成Token
     randomList = list('abcdefghijklmnopqrstuvwxyz0123456789')
     token = ''
@@ -10,11 +10,15 @@ def genToken(mybase, phone_num, id):
         token += random.choice(randomList)
     #TODO 到数据库中更新Token，有则更新token，无则新建用户更新token
     #先判断是phone_num还是id
-    id = ''
+    if phone_num != None:
+        cur
+
+    elif id != None:
+        pass
 
     return id, token
 
-def testToken(mybase, id, token):
+def testToken(cur, id, token):
     #TODO 到数据库中验证token是否合法，返回True or False
     pass
 

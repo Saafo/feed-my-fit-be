@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def thumbup(mybase, args):
+def thumbup(cur, args):
     id = args.get('id')
     token = args.get('token')
     momentid = args.get('momentid')

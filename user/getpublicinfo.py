@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def getpublicinfo(mybase, args):
+def getpublicinfo(cur, args):
     id = args.get('id')
     token = args.get('token')
     getid = args.get('getid')
