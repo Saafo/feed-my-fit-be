@@ -8,7 +8,7 @@
 
 ## 返回数据示例：
 
-```json
+```jsonc
 {
   "errorCode": 0,
   "errorMsg": "ok",
@@ -37,17 +37,18 @@ Url:/user/register
 Request:
 
 ```url
-PhoneNum=12345678901&Key=367b61b333c242a4253cfacfe6ea709f
+phonenum=12345678901&key=ed5ab7d5ac405659ed24e37bb89877c5
 ```
 
 此处key由本地AES加密，秘钥私下给出。
 
 Return:
 
-```json
+```jsonc
 {
   "Id": "xxxxxxxx",
-  "Token": "xxxxxxxxxx"
+  "Token": "xxxxxxxxxx",
+  "Needinfo": "True" //没信息则True。有信息则False，不需要再填个人信息。
 }
 ```
 
@@ -60,15 +61,16 @@ Url:/user/login
 Request:
 
 ```url
-PhoneNum=12345678901&Key=367b61b333c242a4253cfacfe6ea709f
+phonenum=12345678901&key=ed5ab7d5ac405659ed24e37bb89877c5
 ```
 
 Return:
 
-```json
+```jsonc
 {
   "Id": "xxxxxxxx",
-  "Token": "xxxxxxxxx"
+  "Token": "xxxxxxxxx",
+  "Needinfo": "True" //可能上次注册流程没走完，则为False，需要继续填写信息
 }
 ```
 
@@ -81,12 +83,12 @@ Url: /user/updatetoken
 Request:
 
 ```url
-Id=xxxxxxx&Token=xxxxxxx
+id=xxxxxxx&token=xxxxxxx
 ```
 
 Response:
 
-```json
+```jsonc
 {
   "Token": "zzzzzzzz" //新Token，用于替换旧Token
 }
@@ -101,12 +103,12 @@ Url:/user/getselfinfo
 Request:
 
 ```url
-Id=xxxxxxx&Token=xxxxxxx
+id=xxxxxxx&token=xxxxxxx
 ```
 
 Return:
 
-```json
+```jsonc
 {
   "PhoneNum": "12345678901",
   "Avatar": "xxxxxxxxxx", //七牛云url
@@ -144,12 +146,12 @@ Url: /user/getpublicinfo
 Request:
 
 ```url
-Id=xxxxxxx&Token=xxxxxxx&Getid=zzzzzz //Getid为需要获取的用户id
+id=xxxxxxx&token=xxxxxxx&getid=zzzzzz //Getid为需要获取的用户id
 ```
 
 Response:
 
-```json
+```jsonc
 {
   "Id": "zzzzzz",
   "Avatar": "xxxxxxxxx", //七牛云url
@@ -167,7 +169,7 @@ Url:/user/updatedata
 
 Request:
 
-```json
+```jsonc
 {
   "Id": "xxxxxxx",
   "Token": "xxxxxxxxxx",
@@ -199,7 +201,7 @@ Request:
 
 Response:
 
-```json
+```jsonc
 //空data
 ```
 
@@ -219,7 +221,7 @@ Id=xxxxxxxx&Token=xxxxxxx&GetAll=false&Date=20200401
 
 Return:
 
-```json
+```jsonc
 {
   "2020-04-01": {
     "HealthyState": "健康",
@@ -263,7 +265,7 @@ Url:/info/poststatistic
 
 Request:
 
-```json
+```jsonc
 {
   "Id": "xxxxxxx",
   "Token": "xxxxxxxxxx",
@@ -304,7 +306,7 @@ Request:
 
 Return:
 
-```json
+```jsonc
 //空data
 ```
 
@@ -328,7 +330,7 @@ Id=xxxxxxxx&Token=xxxxxxx&GetAll=false&GetId=xxxx
 
 Response:
 
-```json
+```jsonc
 {
   "MomentsIds": ["id1xxxxx", "id2xxxxxxx", "id3xxxxxxx"]
 }
@@ -348,7 +350,7 @@ Id=xxxxxxx&Token=xxxxxxx&MomentID=id1xxxxxx //Id为本用户id
 
 Response:
 
-```json
+```jsonc
 {
   "MomentID": "id1xxxxxx",
   "Id": "xxxxxxxx", //发这条moment用户的id
@@ -384,7 +386,7 @@ Id=xxxxxxx&Token=xxxxxxx&MomentID=id1xxxxxx
 
 Response:
 
-```json
+```jsonc
 //无data
 ```
 
@@ -396,7 +398,7 @@ Url: /moments/postmoment
 
 Request:
 
-```json
+```jsonc
 {
   "Id": "xxxxxxxx",
   "Token": "xxxxxxx",
@@ -408,7 +410,7 @@ Request:
 
 Response:
 
-```json
+```jsonc
 {
   "MomentID": "xxxxx"
 }
@@ -422,7 +424,7 @@ Url: /moments/postcomment
 
 Request:
 
-```json
+```jsonc
 {
   "Id": "xxxxxxx",
   "Token": "xxxxxxxxx",
@@ -434,7 +436,7 @@ Request:
 
 Response:
 
-```json
+```jsonc
 {
   "CommentID": "cxxxxxxxxxx"
 }

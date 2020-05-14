@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def postmoment(cur, json):
+def postmoment(cur, conn, json):
     id = json['Id']
     token = json['Token']
     text = json['Text']

@@ -5,7 +5,7 @@ from user import *
 from info import *
 from moments import *
 
-def flaskapp(cur):
+def flaskapp(cur, conn):
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
 
@@ -23,15 +23,15 @@ def flaskapp(cur):
     #TODO 所有route都要做个参数完整性验证
     @app.route('/user/register') #用户注册
     def register_route():
-        return registerlogin.registerlogin(cur, request.args)
+        return registerlogin.registerlogin(cur, conn, request.args)
 
     @app.route('/user/login') #用户登录
     def login_route():
-        return registerlogin.registerlogin(cur, request.args)
+        return registerlogin.registerlogin(cur, conn, request.args)
 
     @app.route('/user/updatetoken') #Token更新
     def updatetoken_route():
-        return updatetoken.updatetoken(cur, request.args)
+        return updatetoken.updatetoken(cur, conn, request.args)
 
     @app.route('/user/getselfinfo') #获取个人信息
     def getselfinfo_route():
@@ -43,7 +43,7 @@ def flaskapp(cur):
 
     @app.route('/user/updatedata', methods=["POST"]) #更新个人信息
     def updatedata_route():
-        return updatedata.updatedata(cur, request.get_json())
+        return updatedata.updatedata(cur, conn, request.get_json())
 
     @app.route('/info/getstatistic') #获取历史数据
     def getstatistic_route():
@@ -51,7 +51,7 @@ def flaskapp(cur):
 
     @app.route('/info/poststatistic', methods=["POST"]) #更新数据
     def poststatistic_route():
-        return poststatistic.poststatistic(cur, request.get_json())
+        return poststatistic.poststatistic(cur, conn, request.get_json())
 
     @app.route('/moments/getmomentsid') #获取`id为xxxx用户`或者`全体用户`的所有MomentsID
     def getmomentsid_route():
@@ -63,14 +63,14 @@ def flaskapp(cur):
 
     @app.route('/moments/thumbup') #点赞
     def thumbup_route():
-        return thumbup.thumbup(cur, request.args)
+        return thumbup.thumbup(cur, conn, request.args)
 
     @app.route('/moments/postmoment', methods=["POST"]) #发动态
     def postmoment_route():
-        return postmoment.postmoment(cur, request.get_json())
+        return postmoment.postmoment(cur, conn, request.get_json())
 
     @app.route('/moments/postcomment', methods=["POST"]) #评论
     def postcomment_route():
-        return postcomment.postcomment(cur, request.get_json())
+        return postcomment.postcomment(cur, conn, request.get_json())
 
     app.run() #TODO debugging

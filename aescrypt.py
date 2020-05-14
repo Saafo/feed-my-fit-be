@@ -33,12 +33,11 @@ def verify_key(phonenum, key):
     pc = aescrypt(config['KEY'])
     real_key = pc.encrypt(phonenum)
     if real_key == key:
-        print('true')
         return True
     return False
 
 if __name__ == '__main__': #测试用例
     pc = aescrypt('keyskeyskeyskeys')   #初始化金鑰
-    e = pc.encrypt("01234567891")
+    e = pc.encrypt("12345678901")
     # d = pc.decrypt(e)           
     print (e)

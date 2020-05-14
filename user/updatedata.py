@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def updatedata(cur, json):
+def updatedata(cur, conn, json):
     #先解析json
     id = json['Id']
     token = json['Token']

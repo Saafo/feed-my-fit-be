@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def postcomment(cur, json):
+def postcomment(cur, conn, json):
     id = json['Id']
     token = json['Token']
     momentid = json['MomentID']

@@ -2,7 +2,7 @@
 import userToken
 import returnmsg
 
-def updatetoken(cur, args):
+def updatetoken(cur, conn, args):
     id = args.get('id')
     token = args.get('token')
     #参数完整性验证
@@ -13,6 +13,6 @@ def updatetoken(cur, args):
     if userToken.testToken(id, token) == False:
         return returnmsg.tokeninvalid()
     
-    id, token = userToken.genToken(cur, None, id)
+    id, token, needinfo = userToken.genToken(cur, conn, None, id)
     data = {'Token': token}
     return returnmsg.success(data)
