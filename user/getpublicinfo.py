@@ -5,11 +5,15 @@ import returnmsg
 def getpublicinfo(mybase, args):
     id = args.get('id')
     token = args.get('token')
+    getid = args.get('getid')
+    #参数完整性验证
+    if all([id, token, getid]) == False:
+        return returnmsg.error('参数不完整')
+
     #先验证token是否合法
     if userToken.testToken(id, token) == False:
         return returnmsg.tokeninvalid()
 
-    getid = args.get('getid')
 
     #TODO 连接数据库，获取信息
 

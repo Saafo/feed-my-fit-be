@@ -17,7 +17,7 @@ def flaskapp(mybase):
             return data
         if request.method == 'GET':
             json = request.args
-            print(json.get('arg'))
+            print(all([json.get('arg'),json.get('tes')]))
             return json
 
     #TODO 所有route都要做个参数完整性验证

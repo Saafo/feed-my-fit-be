@@ -5,13 +5,17 @@ import returnmsg
 def postmoment(mybase, json):
     id = json['Id']
     token = json['Token']
+    text = json['Text']
+    pic = json['Pic']
+    timestamp = json['Timestamp']
+    #参数完整性验证
+    if all([id, token, text, pic, timestamp]) == False:
+        return returnmsg.error('参数不完整')
+    
     #先验证token是否合法
     if userToken.testToken(id, token) == False:
         return returnmsg.tokeninvalid()
     
-    text = json['Text']
-    pic = json['Pic']
-    timestamp = json['Timestamp']
     #TODO 数据库里新增一个moment
 
     return returnmsg.success({"MomentID": momentid})

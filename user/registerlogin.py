@@ -6,6 +6,9 @@ import aescrypt
 def registerlogin(mybase, args):
     phone_num = args.get('phonenum')
     key = args.get('key')
+    #参数完整性验证
+    if all([phone_num, key]) == False:
+        return returnmsg.error('参数不完整')
     
     #验证key
     if aescrypt.verify_key(phone_num, key) == False:
