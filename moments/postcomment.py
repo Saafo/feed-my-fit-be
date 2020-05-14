@@ -13,7 +13,7 @@ def postcomment(cur, conn, json):
         return returnmsg.error('参数不完整')
     
     #先验证token是否合法
-    if userToken.testToken(id, token) == False:
+    if userToken.testToken(cur, id, token) == False:
         return returnmsg.tokeninvalid()
     
     #TODO 连接数据库，插入评论

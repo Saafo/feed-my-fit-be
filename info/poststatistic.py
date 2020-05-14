@@ -12,7 +12,7 @@ def poststatistic(cur, conn, json):
         return returnmsg.error('参数不完整')
     
     #验证Token是否合法
-    if userToken.testToken(id, token) == False:
+    if userToken.testToken(cur, id, token) == False:
         return returnmsg.tokeninvalid()
     
     #TODO 将数据更新到表里

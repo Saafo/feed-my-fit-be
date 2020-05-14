@@ -20,57 +20,108 @@ def flaskapp(cur, conn):
             print(all([json.get('arg'),json.get('tes')]))
             return json
 
-    #TODO 所有route都要做个参数完整性验证
     @app.route('/user/register') #用户注册
     def register_route():
-        return registerlogin.registerlogin(cur, conn, request.args)
+        try:
+            return registerlogin.registerlogin(cur, conn, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY" #尝试SQL注入时会引发异常，返回异常信息。
 
     @app.route('/user/login') #用户登录
     def login_route():
-        return registerlogin.registerlogin(cur, conn, request.args)
+        try:
+            return registerlogin.registerlogin(cur, conn, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/user/updatetoken') #Token更新
     def updatetoken_route():
-        return updatetoken.updatetoken(cur, conn, request.args)
+        try:
+            return updatetoken.updatetoken(cur, conn, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/user/getselfinfo') #获取个人信息
     def getselfinfo_route():
-        return getselfinfo.getselfinfo(cur, request.args)
+        try:
+            return getselfinfo.getselfinfo(cur, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/user/getpublicinfo') #获取用户公众信息
     def getpublicinfo_route():
-        return getpublicinfo.getpublicinfo(cur, request.args)
+        try:
+            return getpublicinfo.getpublicinfo(cur, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/user/updatedata', methods=["POST"]) #更新个人信息
     def updatedata_route():
-        return updatedata.updatedata(cur, conn, request.get_json())
+        try:
+            return updatedata.updatedata(cur, conn, request.get_json())
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/info/getstatistic') #获取历史数据
     def getstatistic_route():
-        return getstatistic.getstatistic(cur, request.args)
+        try:
+            return getstatistic.getstatistic(cur, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/info/poststatistic', methods=["POST"]) #更新数据
     def poststatistic_route():
-        return poststatistic.poststatistic(cur, conn, request.get_json())
+        try:
+            return poststatistic.poststatistic(cur, conn, request.get_json())
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/moments/getmomentsid') #获取`id为xxxx用户`或者`全体用户`的所有MomentsID
     def getmomentsid_route():
-        return getmomentsid.getmomentsid(cur, request.args)
+        try:
+            return getmomentsid.getmomentsid(cur, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/moments/getmoment') #获取单条动态内容
     def getmoment_route():
-        return getmoment.getmoment(cur, request.args)
+        try:
+            return getmoment.getmoment(cur, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/moments/thumbup') #点赞
     def thumbup_route():
-        return thumbup.thumbup(cur, conn, request.args)
+        try:
+            return thumbup.thumbup(cur, conn, request.args)
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/moments/postmoment', methods=["POST"]) #发动态
     def postmoment_route():
-        return postmoment.postmoment(cur, conn, request.get_json())
+        try:
+            return postmoment.postmoment(cur, conn, request.get_json())
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     @app.route('/moments/postcomment', methods=["POST"]) #评论
     def postcomment_route():
-        return postcomment.postcomment(cur, conn, request.get_json())
+        try:
+            return postcomment.postcomment(cur, conn, request.get_json())
+        except Exception:
+            conn.rollback()
+            return "FUCKYOUSCRIPTBOY"
 
     app.run() #TODO debugging

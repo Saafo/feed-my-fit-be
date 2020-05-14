@@ -10,7 +10,7 @@ def updatetoken(cur, conn, args):
         return returnmsg.error('参数不完整')
     
     #先验证token是否合法
-    if userToken.testToken(id, token) == False:
+    if userToken.testToken(cur, id, token) == False:
         return returnmsg.tokeninvalid()
     
     id, token, needinfo = userToken.genToken(cur, conn, None, id)

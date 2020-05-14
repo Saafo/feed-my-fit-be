@@ -19,7 +19,7 @@ def genToken(cur, conn, phone_num, id):
                 'WHERE {PhoneNum}=%s'
             ).format(
                 ID=sql.Identifier("ID"),
-                PhoneNum=sql.Identifier("PhoneNum"),
+                PhoneNum=sql.Identifier("PhoneNum")
             ),(phone_num,)
         )
         rows = cur.fetchall()
@@ -34,7 +34,7 @@ def genToken(cur, conn, phone_num, id):
                     '(%s, %s)'
                 ).format(
                     Token=sql.Identifier("Token"),
-                    PhoneNum=sql.Identifier("PhoneNum"),
+                    PhoneNum=sql.Identifier("PhoneNum")
                 ),(token, phone_num)
             )
             conn.commit()
@@ -44,7 +44,7 @@ def genToken(cur, conn, phone_num, id):
                     'WHERE {PhoneNum}=%s'
                 ).format(
                     ID=sql.Identifier("ID"),
-                    PhoneNum=sql.Identifier("PhoneNum"),
+                    PhoneNum=sql.Identifier("PhoneNum")
                 ),(phone_num,)
             )
             rows = cur.fetchall()
@@ -71,7 +71,7 @@ def genToken(cur, conn, phone_num, id):
                 'WHERE {ID} = %s'
             ).format(
                 Token=sql.Identifier("Token"),
-                ID=sql.Identifier("ID"),
+                ID=sql.Identifier("ID")
             ),(token, id)
         )
         conn.commit()
