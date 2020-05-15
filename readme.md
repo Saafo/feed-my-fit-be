@@ -131,7 +131,8 @@ Return:
   "VitaminCDemand": "100",
   "VitaminDDemand": "100",
   "VitaminEDemand": "100",
-  "VitaminKDemand": "100"
+  "VitaminKDemand": "100",
+  "Streak": 2
 }
 ```
 
@@ -157,7 +158,8 @@ Response:
   "Avatar": "xxxxxxxxx", //七牛云url
   "Username": "Feed@",
   "Sex": "Male",
-  "City": "成都"
+  "City": "成都",
+  "Streak": 2
 }
 ```
 
@@ -194,7 +196,8 @@ Request:
     "VitaminCDemand": "100",
     "VitaminDDemand": "100",
     "VitaminEDemand": "100",
-    "VitaminKDemand": "100"
+    "VitaminKDemand": "100",
+    "Streak": 2
   }
 }
 ```
@@ -214,9 +217,9 @@ Url:/info/getstatistic
 Request:
 
 ```url
-Id=xxxxxxxx&Token=xxxxxxx&GetAll=true&Date=none
+id=xxxxxxxx&token=xxxxxxx&getall=true&date=none
 //或者
-Id=xxxxxxxx&Token=xxxxxxx&GetAll=false&Date=20200401
+id=xxxxxxxx&token=xxxxxxx&getall=false&date=20200401
 ```
 
 Return:
@@ -225,6 +228,7 @@ Return:
 {
   "2020-04-01": {
     "HealthyState": "健康",
+    "HealthyScore": "97",
     "HeatQuantity": "100",
     "HeatQuantityDiff": "10",
     "Protein": "100",
@@ -255,7 +259,7 @@ Return:
 }
 ```
 
-**以上只是返回一天的数据，如果请求里`GetAll`是`true`的话，可能会返回多天的数据，`key`即是日期。
+**以上只是返回一天的数据，如果请求里`getall`是`true`的话，可能会返回多天的数据，`key`即是日期。
 
 ## 更新数据
 
@@ -272,6 +276,7 @@ Request:
   "UserStatistic": {
     "Date": "2020-04-01",
     "HealthyState": "亚健康",
+    "HealthyScore": "97",
     "HeatQuantity": "100",
     "HeatQuantity": "10",
     "Protein": "100",
@@ -323,9 +328,9 @@ Url: /moments/getmomentsid
 Request:
 
 ```url
-Id=xxxxxxxx&Token=xxxxxxx&GetAll=true&GetId=none
+id=xxxxxxxx&token=xxxxxxx&getall=true&getId=none
 //或者
-Id=xxxxxxxx&Token=xxxxxxx&GetAll=false&GetId=xxxx
+id=xxxxxxxx&token=xxxxxxx&getall=false&getId=xxxx
 ```
 
 Response:
@@ -345,7 +350,7 @@ Url: /moments/getmoment
 Request:
 
 ```url
-Id=xxxxxxx&Token=xxxxxxx&MomentID=id1xxxxxx //Id为本用户id
+id=xxxxxxx&token=xxxxxxx&momentid=id1xxxxxx //Id为本用户id
 ```
 
 Response:
@@ -381,7 +386,7 @@ Url: /moments/thumbup
 Request:
 
 ```url
-Id=xxxxxxx&Token=xxxxxxx&MomentID=id1xxxxxx
+id=xxxxxxx&token=xxxxxxx&momentid=id1xxxxxx
 ```
 
 Response:
@@ -480,6 +485,7 @@ Response:
 | VitaminDDemand      | varchar    | 8      |        |
 | VitaminEDemand      | varchar    | 8      |        |
 | VitaminKDemand      | varchar    | 8      |        |
+| Streak | integer |  | |
 
 
 
@@ -490,6 +496,7 @@ Response:
 | ID                | Serial |        | PK,FK              |
 | ate               | date   |        | PK                 |
 | HealthyState      | varchar   | 15     | 健康，肥胖，亚健康 |
+| HealthyScore | int | 4 |  |
 | HeatQuantity      | varchar  |  8     |                    |
 | HeatQuantityDiff  | varchar  |  8     |                    |
 | Protein           | varchar  |  8     |                    |

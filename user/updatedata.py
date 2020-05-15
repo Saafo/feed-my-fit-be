@@ -12,6 +12,10 @@ def updatedata(cur, conn, json):
     if all([id, token, user_data]) == False:
         return returnmsg.error('参数不完整')
     
+    #验证Token是否合法
+    if userToken.testToken(cur, id, token) == False:
+        return returnmsg.tokeninvalid()
+    
     #user_data完整性验证
     try:
         avatar = user_data['Avatar']
@@ -35,12 +39,9 @@ def updatedata(cur, conn, json):
         vitaminddemand = user_data['VitaminDDemand']
         vitaminedemand = user_data['VitaminEDemand']
         vitaminkdemand = user_data['VitaminKDemand']
+        streak = user_data['Streak']
     except KeyError:
         return returnmsg.error('UserData参数不完整')
-    
-    #验证Token是否合法
-    if userToken.testToken(cur, id, token) == False:
-        return returnmsg.tokeninvalid()
     
     #将数据更新到表里
     cur.execute(
@@ -66,7 +67,8 @@ def updatedata(cur, conn, json):
             '{VitaminCDemand} = %s, '
             '{VitaminDDemand} = %s, '
             '{VitaminEDemand} = %s, '
-            '{VitaminKDemand} = %s '
+            '{VitaminKDemand} = %s, '
+            '{Streak} = %s '
             'WHERE {ID} = %s'
         ).format(
             Avatar=sql.Identifier("Avatar"),
@@ -90,8 +92,9 @@ def updatedata(cur, conn, json):
             VitaminDDemand=sql.Identifier("VitaminDDemand"),
             VitaminEDemand=sql.Identifier("VitaminEDemand"),
             VitaminKDemand=sql.Identifier("VitaminKDemand"),
+            Streak=sql.Identifier("Streak"),
             ID=sql.Identifier("ID")
-        ),(avatar, username, sex, height, weight, birth, city, skintype, heatquantitydemand, proteindemand, carbohydratesdemand, fatdemand, vitaminademand, vitaminb1demand, vitaminb2demand, vitaminb6demand, vitaminb12demand, vitamincdemand, vitaminddemand, vitaminedemand, vitaminkdemand, id)
+        ),(avatar, username, sex, height, weight, birth, city, skintype, heatquantitydemand, proteindemand, carbohydratesdemand, fatdemand, vitaminademand, vitaminb1demand, vitaminb2demand, vitaminb6demand, vitaminb12demand, vitamincdemand, vitaminddemand, vitaminedemand, vitaminkdemand, streak, id)
     )
     conn.commit()
 

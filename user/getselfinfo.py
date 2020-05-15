@@ -47,6 +47,7 @@ def getselfinfo(cur, args):
         "VitaminCDemand": row[22],
         "VitaminDDemand": row[23],
         "VitaminEDemand": row[24],
-        "VitaminKDemand": row[25]
+        "VitaminKDemand": row[25],
+        "Streak": row[26]
     }
     return returnmsg.success(data)

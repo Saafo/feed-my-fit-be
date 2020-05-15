@@ -31,8 +31,9 @@ def getpublicinfo(cur, args):
             "Id": row[0],
             "Avatar": row[5],
             "Username": row[6],
-            "Sex": "Male",
-            "City": "成都"
+            "Sex": row[7],
+            "City": row[11],
+            "Streak": row[26]
         }
         return returnmsg.success(data)
 
