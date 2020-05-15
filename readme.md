@@ -494,7 +494,7 @@ Response:
 | key               | type   | length | more               |
 | ----------------- | ------ | ------ | ------------------ |
 | ID                | Serial |        | PK,FK              |
-| ate               | date   |        | PK                 |
+| Date              | date   |        | PK                 |
 | HealthyState      | varchar   | 15     | 健康，肥胖，亚健康 |
 | HealthyScore | int | 4 |  |
 | HeatQuantity      | varchar  |  8     |                    |

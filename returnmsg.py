@@ -2,7 +2,7 @@ def success(data):
     return {'errorCode':0, 'errorMsg':'ok','data':data}
 
 def empty(msg):
-    return {'errorCode':-1, 'errorMsg':msg}
+    return {'errorCode':-1, 'errorMsg':msg}, 404
 
 def error(msg):
     return {'errorCode':-2, 'errorMsg':msg}, 400
