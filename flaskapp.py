@@ -3,6 +3,7 @@ from flask import request
 from psycopg2 import DataError, InternalError
 from functools import wraps
 
+import returnmsg
 from user import *
 from info import *
 from moments import *
@@ -15,7 +16,7 @@ def handle_database_exception(conn):
                 return f(*args, **kwargs)
             except (DataError, InternalError):
                 conn.rollback()
-                return "FUCKYOUSCRIPTBOY", 403 #尝试SQL注入时会引发异常，返回异常信息。
+                return returnmsg.error("Database Error"), 403 #尝试SQL注入或数据不规范时会引发数据库异常，返回异常信息。
         return wrapper
     return handle
 

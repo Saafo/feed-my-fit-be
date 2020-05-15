@@ -278,7 +278,7 @@ Request:
     "HealthyState": "亚健康",
     "HealthyScore": "97",
     "HeatQuantity": "100",
-    "HeatQuantity": "10",
+    "HeatQuantityDiff": "10",
     "Protein": "100",
     "ProteinDiff": "10",
     "Carbohydrates": "100",
