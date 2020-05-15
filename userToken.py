@@ -15,7 +15,7 @@ def genToken(cur, conn, phone_num, id):
     if phone_num != None:
         cur.execute(
             sql.SQL( #使用sql模块来防止sql注入
-                'SELECT {ID} from userinfo '
+                'SELECT {ID} FROM userinfo '
                 'WHERE {PhoneNum}=%s'
             ).format(
                 ID=sql.Identifier("ID"),
@@ -40,7 +40,7 @@ def genToken(cur, conn, phone_num, id):
             conn.commit()
             cur.execute(
                 sql.SQL(
-                    'SELECT {ID} from userinfo '
+                    'SELECT {ID} FROM userinfo '
                     'WHERE {PhoneNum}=%s'
                 ).format(
                     ID=sql.Identifier("ID"),
@@ -78,7 +78,7 @@ def genToken(cur, conn, phone_num, id):
     #最后从表中取出数据
     cur.execute(
         sql.SQL(
-            'SELECT {ID},{Token},{Height} from userinfo '
+            'SELECT {ID},{Token},{Height} FROM userinfo '
             'WHERE {ID}=%s'
         ).format(
             ID=sql.Identifier("ID"),
@@ -99,7 +99,7 @@ def genToken(cur, conn, phone_num, id):
 def testToken(cur, id, token):
     cur.execute(
         sql.SQL(
-            'SELECT {Token} from userinfo '
+            'SELECT {Token} FROM userinfo '
             'WHERE {ID}=%s'
         ).format(
             Token=sql.Identifier("Token"),

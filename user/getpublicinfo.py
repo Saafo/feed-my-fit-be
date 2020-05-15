@@ -18,7 +18,7 @@ def getpublicinfo(cur, args):
     #连接数据库，获取信息
     cur.execute(
         sql.SQL(
-            'SELECT * from userinfo '
+            'SELECT * FROM userinfo '
             'WHERE {ID}=%s'
         ).format(
             ID=sql.Identifier("ID")

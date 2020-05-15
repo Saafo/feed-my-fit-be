@@ -17,7 +17,7 @@ def getselfinfo(cur, args):
     
     cur.execute(
         sql.SQL(
-            'SELECT * from userinfo '
+            'SELECT * FROM userinfo '
             'WHERE {ID}=%s'
         ).format(
             ID=sql.Identifier("ID")
