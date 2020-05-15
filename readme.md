@@ -328,9 +328,9 @@ Url: /moments/getmomentsid
 Request:
 
 ```url
-id=xxxxxxxx&token=xxxxxxx&getall=true&getId=none
+id=xxxxxxxx&token=xxxxxxx&getall=true&getid=none
 //或者
-id=xxxxxxxx&token=xxxxxxx&getall=false&getId=xxxx
+id=xxxxxxxx&token=xxxxxxx&getall=false&getid=xxxx
 ```
 
 Response:
@@ -359,7 +359,7 @@ Response:
 {
   "MomentID": "id1xxxxxx",
   "Id": "xxxxxxxx", //发这条moment用户的id
-	"Time": "2018-09-01",
+  "Time": "2020-05-11 08:13:21+08" //东八区
   "Text": "dgsgsgsdgasf sdff faf fa 啦啦啦啦测试内容",
   "Pic": "xxxxxxxxxxxxxxx", //url
   "Thumbs": "233",
@@ -367,12 +367,14 @@ Response:
     "1232131": { //CommentID
       "Id": "xxxxxxxx", //发送该条评论的用户id
       "Username": "啦啦啦",
-      "Text": "哈哈哈哈昂xswl"
+      "Text": "哈哈哈哈昂xswl",
+		  "Time": "2020-05-11 08:13:21+08" //东八区
     },
     "2342341": {
       "Id": "xxxxxxxx",
       "Username": "这TM是来捣乱的是吧",
       "Text": "233333333"
+		  "Time": "2020-05-11 08:13:21+08" //东八区
     }
   }
 }
@@ -409,7 +411,6 @@ Request:
   "Token": "xxxxxxx",
   "Text": "这是一条测试文案",
   "Pic": "xxxxxxxxxxxx", //七牛云返回的图片url链接
-  "Timestamp": "2020-05-11 08:13:21+08" //东八区
 }
 ```
 
@@ -435,7 +436,6 @@ Request:
   "Token": "xxxxxxxxx",
   "MomentID": "id1xxxxxx",
   "Text": "哈哈哈哈笑死我了",
-  "Timestamp": "2020-05-11 08:13:21+08" //东八区
 }
 ```
 

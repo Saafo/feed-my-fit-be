@@ -34,7 +34,7 @@ def flaskapp(cur, conn):
             json = request.args
             print(all([json.get('arg'),json.get('tes')]))
             return json
-    #TODO 发生except之后把错误显示出来！！！
+
     @app.route('/user/register') #用户注册
     @handle_database_exception(conn)
     def register_route():

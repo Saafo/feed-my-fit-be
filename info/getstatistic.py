@@ -39,7 +39,7 @@ def getstatistic(cur, args):
             ),(id, date)
         )
     else:
-        return returnmsg.empty("getall值异常")
+        return returnmsg.error("getall值异常")
 
     rows = cur.fetchall()
     #如果是空数据
