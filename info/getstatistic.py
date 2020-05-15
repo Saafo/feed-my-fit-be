@@ -17,7 +17,7 @@ def getstatistic(cur, args):
     if userToken.testToken(cur, id, token) == False:
         return returnmsg.tokeninvalid()
 
-    # TODO根据getall的情况来获取数据
+    #根据getall的情况来获取数据
     if getall == "true":
         cur.execute(
             sql.SQL(

@@ -50,7 +50,7 @@ def poststatistic(cur, conn, json):
     except KeyError:
         return returnmsg.error('UserStatistic参数不完整')
     
-    #TODO 将数据更新到表里
+    #将数据更新到表里
     #判断日期是否存在，存在则更新，不存在则新建
     cur.execute(
         sql.SQL(
