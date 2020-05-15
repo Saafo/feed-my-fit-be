@@ -130,5 +130,8 @@ dmypy.json
 
 # Myself
 test*.py
+test.txt
 config.json
 gitignore/
+.DS_Store
+Thumbs.db
