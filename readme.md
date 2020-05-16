@@ -365,7 +365,7 @@ Response:
   "Time": "Fri, 15 May 2020 03:00:00 GMT",
   "Text": "dgsgsgsdgasf sdff faf fa 啦啦啦啦测试内容",
   "Pic": "xxxxxxxxxxxxxxx", //url
-  "Thumbs": "233",
+  "Thumbs": 233,
   "Username": "啦啦啦",
   "Avatar": "xxxxxxxxxx", //用户头像链接
   "Streak": 4, //该用户坚持天数
@@ -400,7 +400,9 @@ id=xxxxxxx&token=xxxxxxx&momentid=id1xxxxxx
 Response:
 
 ```jsonc
-//无data
+{
+	"Thumbs": 5
+}
 ```
 
 ### 发Moments
