@@ -35,7 +35,7 @@ def getmomentsid(cur, args):
             sql.SQL(
                 'SELECT {MomentID} FROM moments '
                 'WHERE {ID} = %s '
-                'ORDER BY {Time}'
+                'ORDER BY {Time} DESC'
             ).format(
                 MomentID=sql.Identifier("MomendID"),
                 ID=sql.Identifier("ID"),
@@ -48,7 +48,7 @@ def getmomentsid(cur, args):
         cur.execute(
             sql.SQL(
                 'SELECT {MomentID} FROM moments '
-                'ORDER BY {Time}'
+                'ORDER BY {Time} DESC'
             ).format(
                 MomentID=sql.Identifier("MomentID"),
                 Time=sql.Identifier("Time")
@@ -66,7 +66,5 @@ def getmomentsid(cur, args):
     momentsids = []
     for row in rows:
         momentsids.append(row[0])
-    #反向，按时间顺序排列
-    momentsids.reverse()
 
     return returnmsg.success({"MomentsIDs": momentsids})
