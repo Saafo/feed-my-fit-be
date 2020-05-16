@@ -12,7 +12,7 @@ def postmoment(cur, conn, json):
         pic = json['Pic']
     #参数完整性验证
     except KeyError:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #先验证token是否合法
     if userToken.testToken(cur, id, token) == False:

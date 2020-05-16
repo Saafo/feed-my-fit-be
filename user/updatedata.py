@@ -11,7 +11,7 @@ def updatedata(cur, conn, json):
         user_data = json['UserData']
     #参数完整性验证
     except KeyError:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #验证Token是否合法
     if userToken.testToken(cur, id, token) == False:
@@ -42,7 +42,7 @@ def updatedata(cur, conn, json):
         vitaminkdemand = user_data['VitaminKDemand']
         streak = user_data['Streak']
     except KeyError:
-        return returnmsg.error('UserData参数不完整')
+        return returnmsg.error('UserData参数不完整', 400)
     
     #将数据更新到表里
     cur.execute(

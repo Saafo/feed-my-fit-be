@@ -10,7 +10,7 @@ def getmomentsid(cur, args):
     getid = args.get('getid')
     #参数完整性验证
     if all([id, token, getall, getid]) == False:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #先验证token是否合法
     if userToken.testToken(cur, id, token) == False:
@@ -26,10 +26,10 @@ def getmomentsid(cur, args):
                 'WHERE {ID} = %s'
             ).format(
                 ID=sql.Identifier("ID")
-            ),(id,)
+            ),(getid,)
         )
         if cur.fetchone() == None:
-            return returnmsg.error("此用户不存在")
+            return returnmsg.error("此用户不存在", 400)
 
         cur.execute(
             sql.SQL(
@@ -37,10 +37,10 @@ def getmomentsid(cur, args):
                 'WHERE {ID} = %s '
                 'ORDER BY {Time} DESC'
             ).format(
-                MomentID=sql.Identifier("MomendID"),
+                MomentID=sql.Identifier("MomentID"),
                 ID=sql.Identifier("ID"),
                 Time=sql.Identifier("Time")
-            ),(id,)
+            ),(getid,)
         )
     
     #所有用户的moments
@@ -56,7 +56,7 @@ def getmomentsid(cur, args):
         )
 
     else:
-        return returnmsg.error("gerall值异常")
+        return returnmsg.error("gerall值异常", 400)
 
     rows = cur.fetchall()
     #没有动态

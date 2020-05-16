@@ -9,7 +9,7 @@ def getmoment(cur, args):
     momentid = args.get('momentid')
     #参数完整性验证
     if all([id, token, momentid]) == False:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #先验证token是否合法
     if userToken.testToken(cur, id, token) == False:

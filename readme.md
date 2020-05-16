@@ -22,6 +22,7 @@
 *   -1 empty
 *   -2 error
 *   -3 token过期，重新登录
+*   -4 非法url
 
 返回数据在data里，也是一个json
 以下**返回数据**的说明**只针对data内**的部分
@@ -361,7 +362,7 @@ Response:
 {
   "MomentID": "id1xxxxxx",
   "Id": "xxxxxxxx", //发这条moment用户的id
-  "Time": "2020-05-11 08:13:21+08", //东八区
+  "Time": "Fri, 15 May 2020 03:00:00 GMT",
   "Text": "dgsgsgsdgasf sdff faf fa 啦啦啦啦测试内容",
   "Pic": "xxxxxxxxxxxxxxx", //url
   "Thumbs": "233",
@@ -373,13 +374,13 @@ Response:
       "Id": "xxxxxxxx", //发送该条评论的用户id
       "Username": "啦啦啦",
       "Text": "哈哈哈哈昂xswl",
-		  "Time": "2020-05-11 08:13:21+08" //东八区
+		  "Time": "Fri, 15 May 2020 03:00:00 GMT"
     },
     "2342341": {
       "Id": "xxxxxxxx",
       "Username": "这TM是来捣乱的是吧",
       "Text": "233333333"
-		  "Time": "2020-05-11 08:13:21+08" //东八区
+		  "Time": "Fri, 15 May 2020 03:00:00 GMT"
     }
   }
 }

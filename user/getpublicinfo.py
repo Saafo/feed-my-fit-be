@@ -9,7 +9,7 @@ def getpublicinfo(cur, args):
     getid = args.get('getid')
     #参数完整性验证
     if all([id, token, getid]) == False:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
 
     #先验证token是否合法
     if userToken.testToken(cur, id, token) == False:
@@ -38,4 +38,4 @@ def getpublicinfo(cur, args):
         return returnmsg.success(data)
 
     #如果用户不存在
-    return returnmsg.error('用户不存在')
+    return returnmsg.error('用户不存在', 400)

@@ -12,7 +12,7 @@ def postcomment(cur, conn, json):
         text = json['Text']
     #参数完整性验证
     except KeyError:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #先验证token是否合法
     if userToken.testToken(cur, id, token) == False:
@@ -32,7 +32,7 @@ def postcomment(cur, conn, json):
         ),(momentid,)
     )
     if cur.fetchone == None:
-        return returnmsg.error("评论的动态不存在")
+        return returnmsg.error("评论的动态不存在", 400)
 
     #连接数据库，插入评论
     cur.execute(

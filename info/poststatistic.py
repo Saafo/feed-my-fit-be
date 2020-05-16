@@ -11,7 +11,7 @@ def poststatistic(cur, conn, json):
         user_statistic = json['UserStatistic']
     #参数完整性验证
     except KeyError:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #验证Token是否合法
     if userToken.testToken(cur, id, token) == False:
@@ -49,7 +49,7 @@ def poststatistic(cur, conn, json):
         vitamink = user_statistic['VitaminK']
         vitaminkdiff = user_statistic['VitaminKDiff']
     except KeyError:
-        return returnmsg.error('UserStatistic参数不完整')
+        return returnmsg.error('UserStatistic参数不完整', 400)
     
     #将数据更新到表里
     #判断日期是否存在，存在则更新，不存在则新建

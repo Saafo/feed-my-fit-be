@@ -11,7 +11,7 @@ def getstatistic(cur, args):
     date = args.get('date')
     #参数完整性验证
     if all([id, token, getall, date]) == False:
-        return returnmsg.error('参数不完整')
+        return returnmsg.error('参数不完整', 400)
     
     #先验证token是否合法
     if userToken.testToken(cur, id, token) == False:
@@ -39,7 +39,7 @@ def getstatistic(cur, args):
             ),(id, date)
         )
     else:
-        return returnmsg.error("getall值异常")
+        return returnmsg.error("getall值异常", 400)
 
     rows = cur.fetchall()
     #如果是空数据

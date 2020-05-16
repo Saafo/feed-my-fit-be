@@ -17,7 +17,7 @@ def handle_database_exception(conn):
                 return f(*args, **kwargs)
             except (DataError, InternalError):
                 conn.rollback()
-                return returnmsg.error("Database Error"), 403 #尝试SQL注入或数据不规范时会引发数据库异常，返回异常信息。
+                return returnmsg.error("Database Error", 403) #尝试SQL注入或数据不规范时会引发数据库异常，返回异常信息。
         return wrapper
     return handle
 
@@ -25,16 +25,16 @@ def flaskapp(cur, conn):
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
 
-    @app.route('/test', methods=['GET', 'POST']) #TODO delete!
-    def hello_world():
-        if request.method == 'POST':
-            data = request.get_json()
-            print(data)
-            return data
-        if request.method == 'GET':
-            json = request.args
-            print(all([json.get('arg'),json.get('tes')]))
-            return json
+    # @app.route('/test', methods=['GET', 'POST']) #TODO delete!
+    # def hello_world():
+    #     if request.method == 'POST':
+    #         data = request.get_json()
+    #         print(data)
+    #         return data
+    #     if request.method == 'GET':
+    #         json = request.args
+    #         print(all([json.get('arg'),json.get('tes')]))
+    #         return json
 
     @app.route('/user/register') #用户注册
     @handle_database_exception(conn)
@@ -122,10 +122,14 @@ def flaskapp(cur, conn):
     def streak_route():
         return streak.streak(cur, request.args)
 
-    
-    # @app.handle_exception()
-    # @app.errorhandler()
-    def null(): #TODO 看看怎么用上面两个东西
-        pass
+
+    @app.errorhandler(404)
+    def page_not_found(e): 
+        return returnmsg.notfound()
+        
+    @app.errorhandler(Exception)
+    def handle_exception(e):
+        print(e)
+        return returnmsg.internalerror()
 
     app.run() #TODO debugging
