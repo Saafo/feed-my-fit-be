@@ -7,6 +7,7 @@ import returnmsg
 from user import *
 from info import *
 from moments import *
+from rank import *
 
 def handle_database_exception(conn):
     def handle(f):
@@ -110,6 +111,16 @@ def flaskapp(cur, conn):
     @handle_database_exception(conn)
     def postcomment_route():
         return postcomment.postcomment(cur, conn, request.get_json())
+    
+    @app.route('/rank/dailyscore') #每日健康值排行榜
+    @handle_database_exception(conn)
+    def dailyscore_route():
+        return dailyscore.dailyscore(cur, request.args)
+    
+    @app.route('/rank/streak') #连击排行榜
+    @handle_database_exception(conn)
+    def streak_route():
+        return streak.streak(cur, request.args)
 
     
     # @app.handle_exception()

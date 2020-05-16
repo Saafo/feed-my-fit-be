@@ -28,7 +28,9 @@
 
 ---
 
-## 用户注册
+## 用户部分
+
+### 用户注册
 
 HTTP Method: Get
 
@@ -52,7 +54,7 @@ Return:
 }
 ```
 
-## 用户登录
+### 用户登录
 
 HTTP Method: Get
 
@@ -74,7 +76,7 @@ Return:
 }
 ```
 
-## Token更新，每次打开软件的时候进行
+### Token更新，每次打开软件的时候进行
 
 HTTP Method: Get
 
@@ -94,7 +96,7 @@ Response:
 }
 ```
 
-## 获取个人信息
+### 获取个人信息
 
 HTTP Method: Get
 
@@ -138,7 +140,7 @@ Return:
 
 `*Demand`：需求量
 
-## 获取用户公众信息
+### 获取用户公众信息
 
 HTTP Method: Get
 
@@ -163,7 +165,7 @@ Response:
 }
 ```
 
-## 更新个人信息
+### 更新个人信息
 
 HTTP Method: Post
 
@@ -208,7 +210,7 @@ Response:
 //空data
 ```
 
-## 获取历史数据
+### 获取历史数据
 
 HTTP Method: Get
 
@@ -261,7 +263,7 @@ Return:
 
 **以上只是返回一天的数据，如果请求里`getall`是`true`的话，可能会返回多天的数据，`key`即是日期。
 
-## 更新数据
+### 更新数据
 
 HTTP Method: Post
 
@@ -317,9 +319,9 @@ Return:
 
 ---
 
-朋友圈接口相关
+## 朋友圈部分
 
-## 获取`id为xxxx用户`或者`全体用户`的所有MomentsID
+### 获取`id为xxxx用户`或者`全体用户`的所有MomentsID
 
 HTTP Method: Get
 
@@ -341,7 +343,7 @@ Response:
 } //按时间顺序从新到旧
 ```
 
-## 获取单条动态内容
+### 获取单条动态内容
 
 HTTP Method: Get
 
@@ -383,7 +385,7 @@ Response:
 }
 ```
 
-## 点赞
+### 点赞
 
 HTTP Method: Get
 Url: /moments/thumbup
@@ -400,7 +402,7 @@ Response:
 //无data
 ```
 
-## 发Moments
+### 发Moments
 
 HTTP Method: POST
 
@@ -425,7 +427,7 @@ Response:
 }
 ```
 
-## 评论
+### 评论
 
 HTTP Method: Post
 
@@ -452,7 +454,55 @@ Response:
 
 
 
+---
 
+## 排行榜部分
+
+### 每日健康值排行榜
+
+HTTP Method: GET
+
+Url: /rank/dailyscore
+
+Request:
+
+```url
+id=xxxxxxx&token=xxxxxxx
+```
+
+Response:
+
+```jsonc
+{
+  "Ids": ["id1xxxxx", "id2xxxxxxx", "id3xxxxxxx"],
+  "Usernames":["啦啦啦", "哈哈哈", "呱呱呱"],
+  "Avatars": ["https://pixiv/114514", "1", "2"],
+  "HealthyScores": [99, 98, 93]
+} //从高到低排列,最多50个
+```
+
+### 连击排行榜
+
+HTTP Method: GET
+
+Url: /rank/streak
+
+Request:
+
+```url
+id=xxxxxxx&token=xxxxxxx
+```
+
+Response:
+
+```jsonc
+{
+  "Ids": ["id1xxxxx", "id2xxxxxxx", "id3xxxxxxx"],
+  "Usernames":["啦啦啦", "哈哈哈", "呱呱呱"],
+  "Avatars": ["https://pixiv/114514", "1", "2"],
+  "Streak": [7, 3, 0]
+} //从高到低排列,最多50个
+```
 
 ---
 
