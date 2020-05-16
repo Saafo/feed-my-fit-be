@@ -137,3 +137,4 @@ gitignore/
 .DS_Store
 Thumbs.db
 docker-compose.yml
+line.select
