@@ -34,10 +34,12 @@ def getmomentsid(cur, args):
         cur.execute(
             sql.SQL(
                 'SELECT {MomentID} FROM moments '
-                'WHERE {ID} = %s'
+                'WHERE {ID} = %s '
+                'ORDER BY {Time}'
             ).format(
                 MomentID=sql.Identifier("MomendID"),
-                ID=sql.Identifier("ID")
+                ID=sql.Identifier("ID"),
+                Time=sql.Identifier("Time")
             ),(id,)
         )
     
@@ -45,9 +47,11 @@ def getmomentsid(cur, args):
     elif getall == "true":
         cur.execute(
             sql.SQL(
-                'SELECT {MomentID} FROM moments'
+                'SELECT {MomentID} FROM moments '
+                'ORDER BY {Time}'
             ).format(
-                MomentID=sql.Identifier("MomentID")
+                MomentID=sql.Identifier("MomentID"),
+                Time=sql.Identifier("Time")
             )
         )
 
