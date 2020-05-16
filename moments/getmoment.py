@@ -63,7 +63,7 @@ def getmoment(cur, args):
                 "Id": row[2],
                 "Username": row[5],
                 "Text": row[4],
-                "Time": row[3] #TODO 时间格式，时区转换
+                "Time": row[3]
                 }
             }
         )
@@ -72,7 +72,7 @@ def getmoment(cur, args):
         {
             "MomentID": info_row[1],
             "Id": info_row[0],
-            "Time": info_row[2], #TODO 时间格式转换
+            "Time": info_row[2],
             "Text": info_row[3],
             "Pic": info_row[4],
             "Thumbs": info_row[5],
