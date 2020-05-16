@@ -35,7 +35,7 @@ def getmoment(cur, args):
         ),(momentid,)
     )
     info_row = cur.fetchone()
-    if len(info_row) == 0:
+    if info_row == None:
         return returnmsg.empty("无动态数据")
     #查询评论数据
     cur.execute(

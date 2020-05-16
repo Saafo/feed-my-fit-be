@@ -28,7 +28,7 @@ def getmomentsid(cur, args):
                 ID=sql.Identifier("ID")
             ),(id,)
         )
-        if len(cur.fetchone()) == 0:
+        if cur.fetchone() == None:
             return returnmsg.error("此用户不存在")
 
         cur.execute(
