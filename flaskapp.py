@@ -25,16 +25,6 @@ def flaskapp(cur, conn):
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
 
-    # @app.route('/test', methods=['GET', 'POST']) #TODO delete!
-    # def hello_world():
-    #     if request.method == 'POST':
-    #         data = request.get_json()
-    #         print(data)
-    #         return data
-    #     if request.method == 'GET':
-    #         json = request.args
-    #         print(all([json.get('arg'),json.get('tes')]))
-    #         return json
 
     @app.route('/user/register') #用户注册
     @handle_database_exception(conn)
@@ -132,4 +122,6 @@ def flaskapp(cur, conn):
         print(e)
         return returnmsg.internalerror()
 
-    app.run() #TODO debugging
+    app.run(host=app.config['HOST'],
+            port=app.config['PORT'],
+            debug=app.config['DEBUG'])
