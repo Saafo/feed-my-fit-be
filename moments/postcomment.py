@@ -5,12 +5,13 @@ import returnmsg
 from psycopg2 import sql
 
 def postcomment(cur, conn, json):
-    id = json['Id']
-    token = json['Token']
-    momentid = json['MomentID']
-    text = json['Text']
+    try:
+        id = json['Id']
+        token = json['Token']
+        momentid = json['MomentID']
+        text = json['Text']
     #参数完整性验证
-    if all([id, token, momentid, text]) == False:
+    except KeyError:
         return returnmsg.error('参数不完整')
     
     #先验证token是否合法

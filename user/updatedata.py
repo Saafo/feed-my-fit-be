@@ -5,11 +5,12 @@ from psycopg2 import sql
 
 def updatedata(cur, conn, json):
     #先解析json
-    id = json['Id']
-    token = json['Token']
-    user_data = json['UserData']
+    try:
+        id = json['Id']
+        token = json['Token']
+        user_data = json['UserData']
     #参数完整性验证
-    if all([id, token, user_data]) == False:
+    except KeyError:
         return returnmsg.error('参数不完整')
     
     #验证Token是否合法
