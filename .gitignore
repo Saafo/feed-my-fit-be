@@ -133,5 +133,7 @@ test*.py
 test.txt
 config.json
 gitignore/
+.vscode/
 .DS_Store
 Thumbs.db
+docker-compose.yml
