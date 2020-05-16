@@ -338,7 +338,7 @@ Response:
 ```jsonc
 {
   "MomentsIds": ["id1xxxxx", "id2xxxxxxx", "id3xxxxxxx"]
-}
+} //按时间顺序从新到旧
 ```
 
 ## 获取单条动态内容
@@ -359,11 +359,14 @@ Response:
 {
   "MomentID": "id1xxxxxx",
   "Id": "xxxxxxxx", //发这条moment用户的id
-  "Time": "2020-05-11 08:13:21+08" //东八区
+  "Time": "2020-05-11 08:13:21+08", //东八区
   "Text": "dgsgsgsdgasf sdff faf fa 啦啦啦啦测试内容",
   "Pic": "xxxxxxxxxxxxxxx", //url
   "Thumbs": "233",
-  "Comments": {
+  "Username": "啦啦啦",
+  "Avatar": "xxxxxxxxxx", //用户头像链接
+  "Streak": 4, //该用户坚持天数
+  "Comments": { //因为是json，所以可能乱序，但commentid有规律，越大越新
     "1232131": { //CommentID
       "Id": "xxxxxxxx", //发送该条评论的用户id
       "Username": "啦啦啦",
