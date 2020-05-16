@@ -22,7 +22,7 @@ def postcomment(cur, conn, json):
     #服务器为北京时间
     now = time.strftime("%Y-%m-%d %H:%M:%S+08", time.localtime())
 
-    #TODO 先检查是否存在动态
+    #先检查是否存在动态
     cur.execute(
         sql.SQL(
             'SELECT {MomentID} FROM moments '
@@ -34,7 +34,7 @@ def postcomment(cur, conn, json):
     if cur.fetchone == None:
         return returnmsg.error("评论的动态不存在")
 
-    #TODO 连接数据库，插入评论
+    #连接数据库，插入评论
     cur.execute(
         sql.SQL(
             'INSERT INTO comments '
