@@ -1,0 +1,7 @@
+version: '3'
+services:
+  idumn:
+    image: idumn:latest
+    container_name: idumn_dc
+    ports:
+      - "10801:80"
